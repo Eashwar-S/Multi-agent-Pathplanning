@@ -190,9 +190,7 @@ def subdimensionalExpansion():
 
 def triangleCoordinates(start, end, triangleSize=5):
     rotation = (math.atan2(start[1] - end[1], end[0] - start[0])) + math.pi / 2
-    # print(math.atan2(start[1] - end[1], end[0] - start[0]))
     rad = math.pi / 180
-
     coordinateList = np.array([[end[0], end[1]],
                                [end[0] + triangleSize * math.sin(rotation - 165 * rad),
                                 end[1] + triangleSize * math.cos(rotation - 165 * rad)],
@@ -207,37 +205,15 @@ def triangleCoordinates(start, end, triangleSize=5):
 ###################################################
 clearance = 3
 radius = 0
-
 stepSize = 11
-
-# Start time of simulation
-startTime = time.time()
-
-# Step size of movement
-threshDistance = stepSize
-
+startTime = time.time()  # Start time of simulation
+threshDistance = stepSize  # Step size of movement
 res = 1  # resolution of grid
 scale = 40  # scale of grid
-
-start = [[1 * scale, 16 * scale], [1 * scale, 1 * scale]]
-goal = [[16 * scale, 1 * scale], [16 * scale, 16 * scale]]
-start1 = 1 * scale
-start2 = 16 * scale
-goal1 = 16 * scale
-goal2 = 1 * scale
-s1 = 1 * scale
-s2 = 1 * scale
-
-g1 = 16 * scale
-g2 = 16 * scale
-
-# Angle between actions
-threshAngle = 45
-
+start = [[1 * scale, 16 * scale], [1 * scale, 1 * scale]]  # Starting position of the robots
+goal = [[16 * scale, 1 * scale], [16 * scale, 16 * scale]]  # Goal position of the robots
+threshAngle = 45  # Angle between actions
 startOrientation = 0
-
-pygame.init()
-
 white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
@@ -251,8 +227,12 @@ colors = [green, orange]
 solutionPaths = []
 size_x = 20
 size_y = 20
+
+pygame.init()
 gameDisplay = pygame.display.set_mode((size_x * scale, size_y * scale))
 gameDisplay.fill(white)
+pygame.display.set_caption("M* Algorithm Implementation")
+basicfont = pygame.font.SysFont('timesnewroman', 20, bold=True)
 ############################################################
 #                 Display Obstacles
 ############################################################
@@ -271,28 +251,19 @@ pygame.draw.rect(gameDisplay, black, [int(scale * 10.15), int(scale * 16), int(s
 #          Draw Explored Nodes and solution path
 ############################################################
 for i in range(len(start)):
-    pygame.draw.circle(gameDisplay, red, start[i], 0.1 * scale)
-    pygame.draw.circle(gameDisplay, red, goal[i], 0.1 * scale)
-
-    # pygame.draw.circle(gameDisplay, red, (start1, start2), 0.1 * scale)
-    # pygame.draw.circle(gameDisplay, red, (goal1, goal2), 0.1 * scale)
-
+    pygame.draw.circle(gameDisplay, black, start[i], 0.1 * scale)
+    pygame.draw.circle(gameDisplay, black, goal[i], 0.1 * scale)
+    text = basicfont.render('s' + str(i + 1), False, black)
+    text1 = basicfont.render('g' + str(i + 1), False, black)
+    gameDisplay.blit(text, (start[i][0]+5, start[i][1]+5))
+    gameDisplay.blit(text1, (goal[i][0]+5, goal[i][1]+5))
     nodesExplored = {}
     q = []
     startPosition = np.round((np.array(start[i])) / res)
     goalPosition = np.round((np.array(goal[i])) / res)
     if not isSafe(startPosition, scale, res, clearance + radius) or not isSafe(goalPosition, scale, res,
                                                                                clearance + radius):
-        basicfont = pygame.font.SysFont(None, 48)
-        text = basicfont.render('Start or goal configuration of robot ' + str(i + 1) + ' is not in a valid workspace',
-                                True, (255, 0, 0), (255, 255, 255))
-        textrect = text.get_rect()
-        textrect.centerx = gameDisplay.get_rect().centerx
-        textrect.centery = gameDisplay.get_rect().centery
-
-        gameDisplay.blit(text, textrect)
-        pygame.display.update()
-        pygame.time.delay(2000)
+        print('Start or goal configuration of robot ' + str(i + 1) + ' is not in a valid workspace')
 
     else:
         print('Exploring workspace for robot ' + str(i + 1))
@@ -324,12 +295,9 @@ for i in range(len(start)):
                         x2, y2 = ptParent * res
                         # draw explored nodes
                         pygame.draw.line(gameDisplay, colors[i], (x2, y2), (x, y), 1)
-                        # pygame.draw.circle(gameDisplay,green,(int(x),int(y)),4)
-                        # pygame.draw.circle(gameDisplay,green,(int(x2),int(y2)),2)
                         triangle = triangleCoordinates([x2, y2], [x, y], 8)
                         pygame.draw.polygon(gameDisplay, colors[i],
                                             [tuple(triangle[0]), tuple(triangle[1]), tuple(triangle[2])])
-                        pygame.display.update()
                     # draw start and goal locations
                     pygame.draw.rect(gameDisplay, colors[i],
                                      (int(startPosition[0] * res * scale), int(startPosition[1] * res * scale),
@@ -368,24 +336,21 @@ for i in range(len(solutionPaths)):
 
 # draw solution path
 while not all(ele == -2 for ele in iterateSolutionPaths):
-    for i in range(len(start)):
+    for i in range(len(solutionPaths)):
         if iterateSolutionPaths[i] != -2:
             if iterateSolutionPaths[i] == -1:
-                print("There is no Path forRobot " + str(i+1))
+                print("There is no Path for Robot " + str(i + 1))
                 iterateSolutionPaths[-i] = -2
             elif iterateSolutionPaths[i] >= 0:
                 pt = solutionPaths[i][iterateSolutionPaths[i]][0:2]
                 x, y = pt[0] * res, pt[1] * res
                 pygame.draw.circle(gameDisplay, pathColours[i], (int(x * res), int(y * res)), math.floor(3 * 1.5 * res))
-                pygame.time.delay(100)
+                pygame.time.delay(50)
                 iterateSolutionPaths[i] -= 1
                 if iterateSolutionPaths[i] == 0:
-                    print("Robot " + str(i+1) + " reached its goal")
+                    print("Robot " + str(i + 1) + " reached its goal")
                     iterateSolutionPaths[i] = -2
                 pygame.display.update()
 
-
 pygame.time.delay(4000)
-# pygame.display.update()
-# pygame.time.delay(2000)
 pygame.quit()
