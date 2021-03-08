@@ -17,27 +17,28 @@ def environment2D(pt):
     size_x = 20
     size_y = 20
     gameDisplay = pygame.display.set_mode((size_x * scale, size_y * scale))
-    pygame.draw.rect(gameDisplay, white, [int(scale * 8), int(scale * 9), int(scale * 4.5), int(scale * 0.5)])  # plus
-    pygame.draw.rect(gameDisplay, white, [int(scale * 10), int(scale * 7), int(scale * 0.5), int(scale * 4.5)])  # plus
-    pygame.draw.rect(gameDisplay, white, [int(scale * 4), int(scale * 8), int(scale * 0.25), int(scale * 2.5)])  # |
-    pygame.draw.rect(gameDisplay, white, [int(scale * 1.5), int(scale * 9), int(scale * 1.5), int(scale * 0.25)])  # -
-    pygame.draw.rect(gameDisplay, white, [int(scale * 16), int(scale * 8), int(scale * 0.25), int(scale * 2.5)])  # |
-    pygame.draw.rect(gameDisplay, white, [int(scale * 17), int(scale * 9), int(scale * 1.5), int(scale * 0.25)])  # -
-    pygame.draw.rect(gameDisplay, white, [int(scale * 9), int(scale * 3), int(scale * 2.5), int(scale * 0.25)])  # -
-    pygame.draw.rect(gameDisplay, white, [int(scale * 10.15), int(scale * 0.8), int(scale * 0.25), int(scale * 1.5)])  # |
-    pygame.draw.rect(gameDisplay, white, [int(scale * 9), int(scale * 15), int(scale * 2.5), int(scale * 0.25)])  # -
-    pygame.draw.rect(gameDisplay, white, [int(scale * 10.15), int(scale * 16), int(scale * 0.25), int(scale * 1.5)])  # |
+    gameDisplay.fill(white)
+    pygame.draw.rect(gameDisplay, black, [int(scale * 8), int(scale * 9), int(scale * 4.5), int(scale * 0.5)])  # plus
+    pygame.draw.rect(gameDisplay, black, [int(scale * 10), int(scale * 7), int(scale * 0.5), int(scale * 4.5)])  # plus
+    pygame.draw.rect(gameDisplay, black, [int(scale * 4), int(scale * 8), int(scale * 0.25), int(scale * 2.5)])  # |
+    pygame.draw.rect(gameDisplay, black, [int(scale * 1.5), int(scale * 9), int(scale * 1.5), int(scale * 0.25)])  # -
+    pygame.draw.rect(gameDisplay, black, [int(scale * 16), int(scale * 8), int(scale * 0.25), int(scale * 2.5)])  # |
+    pygame.draw.rect(gameDisplay, black, [int(scale * 17), int(scale * 9), int(scale * 1.5), int(scale * 0.25)])  # -
+    pygame.draw.rect(gameDisplay, black, [int(scale * 9), int(scale * 3), int(scale * 2.5), int(scale * 0.25)])  # -
+    pygame.draw.rect(gameDisplay, black, [int(scale * 10.15), int(scale * 0.8), int(scale * 0.25), int(scale * 1.5)])  # |
+    pygame.draw.rect(gameDisplay, black, [int(scale * 9), int(scale * 15), int(scale * 2.5), int(scale * 0.25)])  # -
+    pygame.draw.rect(gameDisplay, black, [int(scale * 10.15), int(scale * 16), int(scale * 0.25), int(scale * 1.5)])  # |
 
-    pygame.draw.circle(gameDisplay, yellow, (pt[0] * scale, pt[1] * scale), 0.08 * scale)
+    pygame.draw.circle(gameDisplay, red, (pt[0] * scale, pt[1] * scale), 0.08 * scale)
     pygame.display.update()
     pygame.time.delay(5000)
     pygame.quit()
 
 
-def environment3D():
-    pass
-
-
+# def environment3D():
+#     pass
+#
+#
 # def main():
 #     environment2D()
 #
