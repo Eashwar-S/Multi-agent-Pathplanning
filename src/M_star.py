@@ -2,7 +2,7 @@ import numpy as np
 import heapq
 import math
 import time
-from Environment import *
+import pygame
 
 
 class Node:
