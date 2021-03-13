@@ -22,62 +22,52 @@ def pointInValidWorkspace(point, res, radiusClearance, scale):
     X = np.float32([8, 12.5, 12.5, 8]) * scale / res
     Y = np.float32([9, 9, 9.5, 9.5]) * scale / res
     ptInRectangle = Y[0] - radiusClearance / res <= y <= Y[2] + radiusClearance / res and \
-                    0 >= (Y[2] - Y[1]) * (x - X[1]) - radiusClearance / res and \
-                    0 >= (Y[0] - Y[3]) * (x - X[3]) - radiusClearance / res
+                    X[1] + radiusClearance / res >= x >= X[3] - radiusClearance / res
 
     X = np.float32([10, 10.5, 10.5, 10]) * scale / res
     Y = np.float32([7, 7, 14.5, 14.5]) * scale / res
     ptInRectangle1 = Y[0] - radiusClearance / res <= y <= Y[2] + radiusClearance / res and \
-                     0 >= (Y[2] - Y[1]) * (x - X[1]) - radiusClearance / res and \
-                     0 >= (Y[0] - Y[3]) * (x - X[3]) - radiusClearance / res
+                     X[1] + radiusClearance / res >= x >= X[3] - radiusClearance / res
 
     X = np.float32([4, 4.25, 4.25, 4]) * scale / res
     Y = np.float32([8, 8, 10.5, 10.5]) * scale / res
     ptInRectangle2 = Y[0] - radiusClearance / res <= y <= Y[2] + radiusClearance / res and \
-                     0 >= (Y[2] - Y[1]) * (x - X[1]) - radiusClearance / res and \
-                     0 >= (Y[0] - Y[3]) * (x - X[3]) - radiusClearance / res
+                     X[1] + radiusClearance / res >= x >= X[3] - radiusClearance / res
 
     X = np.float32([1.5, 3, 3, 1.5]) * scale / res
     Y = np.float32([9, 9, 9.25, 9.25]) * scale / res
     ptInRectangle3 = Y[0] - radiusClearance / res <= y <= Y[2] + radiusClearance / res and \
-                     0 >= (Y[2] - Y[1]) * (x - X[1]) - radiusClearance / res and \
-                     0 >= (Y[0] - Y[3]) * (x - X[3]) - radiusClearance / res
+                     X[1] + radiusClearance / res >= x >= X[3] - radiusClearance / res
 
     X = np.float32([16, 16.25, 16.25, 16]) * scale / res
     Y = np.float32([8, 8, 10.5, 10.5]) * scale / res
     ptInRectangle4 = Y[0] - radiusClearance / res <= y <= Y[2] + radiusClearance / res and \
-                     0 >= (Y[2] - Y[1]) * (x - X[1]) - radiusClearance / res and \
-                     0 >= (Y[0] - Y[3]) * (x - X[3]) - radiusClearance / res
+                     X[1] + radiusClearance / res >= x >= X[3] - radiusClearance / res
 
     X = np.float32([17, 17.5, 17.5, 17]) * scale / res
     Y = np.float32([9, 9, 9.25, 9.25]) * scale / res
     ptInRectangle5 = Y[0] - radiusClearance / res <= y <= Y[2] + radiusClearance / res and \
-                     0 >= (Y[2] - Y[1]) * (x - X[1]) - radiusClearance / res and \
-                     0 >= (Y[0] - Y[3]) * (x - X[3]) - radiusClearance / res
+                     X[1] + radiusClearance / res >= x >= X[3] - radiusClearance / res
 
     X = np.float32([9, 11.5, 11.5, 9]) * scale / res
     Y = np.float32([3, 3, 3.25, 3.25]) * scale / res
     ptInRectangle6 = Y[0] - radiusClearance / res <= y <= Y[2] + radiusClearance / res and \
-                     0 >= (Y[2] - Y[1]) * (x - X[1]) - radiusClearance / res and \
-                     0 >= (Y[0] - Y[3]) * (x - X[3]) - radiusClearance / res
+                     X[1] + radiusClearance / res >= x >= X[3] - radiusClearance / res
 
     X = np.float32([10.15, 10.35, 10.35, 10.15]) * scale / res
     Y = np.float32([0.8, 0.8, 2.3, 2.3]) * scale / res
     ptInRectangle7 = Y[0] - radiusClearance / res <= y <= Y[2] + radiusClearance / res and \
-                     0 >= (Y[2] - Y[1]) * (x - X[1]) - radiusClearance / res and \
-                     0 >= (Y[0] - Y[3]) * (x - X[3]) - radiusClearance / res
+                     X[1] + radiusClearance / res >= x >= X[3] - radiusClearance / res
 
     X = np.float32([9, 11.5, 11.5, 9]) * scale / res
     Y = np.float32([15, 15, 15.25, 15.25]) * scale / res
     ptInRectangle8 = Y[0] - radiusClearance / res <= y <= Y[2] + radiusClearance / res and \
-                     0 >= (Y[2] - Y[1]) * (x - X[1]) - radiusClearance / res and \
-                     0 >= (Y[0] - Y[3]) * (x - X[3]) - radiusClearance / res
+                     X[1] + radiusClearance / res >= x >= X[3] - radiusClearance / res
 
     X = np.float32([10.15, 10.40, 10.40, 10.15]) * scale / res
     Y = np.float32([16, 16, 17.5, 17.5]) * scale / res
     ptInRectangle9 = Y[0] - radiusClearance / res <= y <= Y[2] + radiusClearance / res and \
-                     0 >= (Y[2] - Y[1]) * (x - X[1]) - radiusClearance / res and \
-                     0 >= (Y[0] - Y[3]) * (x - X[3]) - radiusClearance / res
+                     X[1] + radiusClearance / res >= x >= X[3] - radiusClearance / res
 
     if ptInRectangle or ptInRectangle1 or ptInRectangle2 or ptInRectangle3 or ptInRectangle4 or \
             ptInRectangle5 or ptInRectangle6 or ptInRectangle7 or ptInRectangle8 or ptInRectangle9:
@@ -174,6 +164,11 @@ def Astar(q, startPosition, startOrientation, goalPosition, nodesExplored, scale
 
 # TODO
 def subdimensionalExpansion():
+    # Working on Pseudo code
+    # Prerequisites:
+    # Create a class called agent where one of its attributes
+    # is to know the solutions of other agents
+    # Creating a visualization when the expansion happens
     pass
 
 
@@ -203,15 +198,17 @@ def triangleCoordinates(start, end, triangleSize=5):
 ###################################################
 #                  Parameters
 ###################################################
-clearance = 3
+clearance = 10
 radius = 0
 stepSize = 11
 startTime = time.time()  # Start time of simulation
 threshDistance = stepSize  # Step size of movement
 res = 1  # resolution of grid
 scale = 40  # scale of grid
-start = [[1 * scale, 16 * scale], [1 * scale, 1 * scale]]  # Starting position of the robots
-goal = [[16 * scale, 1 * scale], [16 * scale, 16 * scale]]  # Goal position of the robots
+start = [[1 * scale, 16 * scale], [1 * scale, 1 * scale], [1 * scale, 6 * scale],
+         [6 * scale, 1 * scale]]  # Starting position of the robots
+goal = [[2 * scale, 8 * scale], [16 * scale, 16 * scale], [14 * scale, 10 * scale],
+        [9 * scale, 14 * scale]]  # Goal position of the robots
 threshAngle = 45  # Angle between actions
 startOrientation = 0
 white = (255, 255, 255)
@@ -222,8 +219,11 @@ orange = (255, 140, 0)
 blue = (0, 0, 255)
 purple = (75, 0, 130)
 yellow = (255, 255, 0)
-pathColours = [red, purple]
-colors = [green, orange]
+pink = (255, 20, 147)
+cyan = (0, 255, 255)
+maroon = (128, 0, 0)
+pathColours = [red, purple, pink, maroon]
+colors = [green, orange, yellow, cyan]
 solutionPaths = []
 size_x = 20
 size_y = 20
@@ -255,8 +255,16 @@ for i in range(len(start)):
     pygame.draw.circle(gameDisplay, black, goal[i], 0.1 * scale)
     text = basicfont.render('s' + str(i + 1), False, black)
     text1 = basicfont.render('g' + str(i + 1), False, black)
-    gameDisplay.blit(text, (start[i][0]+5, start[i][1]+5))
-    gameDisplay.blit(text1, (goal[i][0]+5, goal[i][1]+5))
+    gameDisplay.blit(text, (start[i][0] + 5, start[i][1] + 5))
+    gameDisplay.blit(text1, (goal[i][0] + 5, goal[i][1] + 5))
+
+for i in range(len(start)):
+    # pygame.draw.circle(gameDisplay, black, start[i], 0.1 * scale)
+    # pygame.draw.circle(gameDisplay, black, goal[i], 0.1 * scale)
+    # text = basicfont.render('s' + str(i + 1), False, black)
+    # text1 = basicfont.render('g' + str(i + 1), False, black)
+    # gameDisplay.blit(text, (start[i][0]+5, start[i][1]+5))
+    # gameDisplay.blit(text1, (goal[i][0]+5, goal[i][1]+5))
     nodesExplored = {}
     q = []
     startPosition = np.round((np.array(start[i])) / res)
@@ -295,7 +303,7 @@ for i in range(len(start)):
                         x2, y2 = ptParent * res
                         # draw explored nodes
                         pygame.draw.line(gameDisplay, colors[i], (x2, y2), (x, y), 1)
-                        triangle = triangleCoordinates([x2, y2], [x, y], 8)
+                        triangle = triangleCoordinates([x2, y2], [x, y], 5)
                         pygame.draw.polygon(gameDisplay, colors[i],
                                             [tuple(triangle[0]), tuple(triangle[1]), tuple(triangle[2])])
                     # draw start and goal locations
@@ -340,7 +348,7 @@ while not all(ele == -2 for ele in iterateSolutionPaths):
         if iterateSolutionPaths[i] != -2:
             if iterateSolutionPaths[i] == -1:
                 print("There is no Path for Robot " + str(i + 1))
-                iterateSolutionPaths[-i] = -2
+                iterateSolutionPaths[i] = -2
             elif iterateSolutionPaths[i] >= 0:
                 pt = solutionPaths[i][iterateSolutionPaths[i]][0:2]
                 x, y = pt[0] * res, pt[1] * res
